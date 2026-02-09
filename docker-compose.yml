@@ -3,6 +3,14 @@ version: "3.8"
 services:
   app:
     image: ubuntu:24.04
-    container_name: ubuntu2404
-    tty: true
-    stdin_open: true
+    container_name: ubuntu-nginx
+    ports:
+      - "8080:80"
+    labels:
+      shipyard.route: "/"
+    command: >
+      bash -c "
+      apt update &&
+      apt install -y nginx &&
+      nginx -g 'daemon off;'
+      "
