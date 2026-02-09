@@ -1,16 +1,11 @@
 version: '3'
 
 services:
-  my-ubuntu:
-    image: ubuntu:22.04
+  flutter-demo-app:
+    build: .                 # Build từ Dockerfile ở thư mục hiện tại
     container_name: ubuntu_sandbox
-    # Quan trọng: tty: true giúp container không bị tắt ngay lập tức
-    tty: true 
-    # Hoặc dùng command dưới đây để treo máy
-    command: tail -f /dev/null
-    volumes:
-      - ./data:/root/data  # Mount thư mục để chia sẻ file
+    restart: always
     ports:
-      - "8080:8080"
-    labels:
-      shipyard.route: "/"
+      - "8080:8080"          # Map cổng 8080 của máy chủ vào 8080 của container
+    volumes:
+      - ./data:/app/data
