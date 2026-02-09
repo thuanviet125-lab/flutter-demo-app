@@ -1,7 +1,12 @@
-version: "3.8"
+version: '3'
 
 services:
-  app:
+  my-ubuntu:
     image: ubuntu:22.04
-    ports:
-      - "80:80"
+    container_name: ubuntu_sandbox
+    # Quan trọng: tty: true giúp container không bị tắt ngay lập tức
+    tty: true 
+    # Hoặc dùng command dưới đây để treo máy
+    command: tail -f /dev/null
+    volumes:
+      - ./data:/root/data  # Mount thư mục để chia sẻ file
