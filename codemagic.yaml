@@ -2,5 +2,6 @@ workflows:
   linux-workflow:
     name: My Linux workflow
     instance_type: linux_x2
+    max_build_duration: 60
     environment:
       ubuntu: 24.04
